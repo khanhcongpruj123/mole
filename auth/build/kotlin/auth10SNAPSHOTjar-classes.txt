@@ -1,1 +1,0 @@
-/Users/idev/Documents/projects/mole/auth/build/classes/kotlin/main/org/idev/mole/auth/AuthAppKt.class
