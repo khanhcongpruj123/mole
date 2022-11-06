@@ -6,5 +6,19 @@ services:
     environment:
       - POSTGRES_USER=mole
       - POSTGRES_PASSWORD=mole
+    volumes:
+      - "~/.mole/postgresql/data:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
+  keycloak:
+    image: docker.io/bitnami/keycloak:19
+    environment:
+      - KEYCLOAK_DATABASE_HOST=db
+      - KEYCLOAK_DATABASE_PORT=5432
+      - KEYCLOAK_DATABASE_NAME=bitnami_keycloak
+      - KEYCLOAK_DATABASE_USER=mole
+      - KEYCLOAK_DATABASE_PASSWORD=mole
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"

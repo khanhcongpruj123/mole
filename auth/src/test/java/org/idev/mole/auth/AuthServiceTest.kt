@@ -1,6 +1,6 @@
 package org.idev.mole.auth
 
-import org.idev.mole.auth.services.AuthService
+import org.idev.mole.auth.services.AuthServiceImpl
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 class AuthServiceTest {
 
     @Autowired
-    private lateinit var authService: AuthService
+    private lateinit var authService: AuthServiceImpl
 
     @Test
     fun `test sign up`() {

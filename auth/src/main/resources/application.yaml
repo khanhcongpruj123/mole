@@ -19,3 +19,6 @@ keycloak:
     secret: wRlc9SedbKfDr9xwWqnbzVOLJI7STYl1
   use-resource-role-mappings: true
   bearer-only: true
+keycloak-admin:
+  admin-username: admin
+  admin-password: 123qweA!

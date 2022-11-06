@@ -20,4 +20,7 @@ dependencies {
 
     implementation("org.keycloak:keycloak-spring-boot-starter:19.0.3")
     implementation("org.keycloak:keycloak-admin-client:19.0.3")
+
+    kapt("com.github.pozo:mapstruct-kotlin-processor:1.4.0.0")
+    kapt("org.mapstruct:mapstruct-processor:1.5.3.Final")
 }

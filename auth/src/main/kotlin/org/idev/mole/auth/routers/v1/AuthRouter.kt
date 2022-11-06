@@ -1,18 +1,19 @@
 package org.idev.mole.auth.routers.v1
 
-import org.idev.mole.auth.services.AuthService
+import org.idev.mole.auth.dto.RefreshTokenRequest
+import org.idev.mole.auth.dto.SignInRequest
+import org.idev.mole.auth.dto.SignUpRequest
+import org.idev.mole.auth.services.AuthServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.net.URI
-import java.util.Objects
 
 @RestController
 @RequestMapping("/api/v1/auth")
-class AuthHandler(private val authService: AuthService) {
+class AuthRouter(private val authService: AuthServiceImpl) {
 
     @PostMapping("/sign-up")
     fun signUp(@RequestBody request: SignUpRequest) : ResponseEntity<Void> {
@@ -30,16 +31,3 @@ class AuthHandler(private val authService: AuthService) {
         return ResponseEntity.ok(authService.refreshToken(refreshToken = request.refreshToken))
     }
 }
-
-data class SignUpRequest(
-    val username: String,
-    val email: String,
-    val password: String
-)
-
-data class SignInRequest(
-    val username: String,
-    val password: String
-)
-
-data class RefreshTokenRequest(val refreshToken: String)

@@ -22,7 +22,8 @@ class WebSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         super.configure(http)
         http.authorizeRequests()
-            .antMatchers("/api/v1/auth/**").permitAll()
+            .antMatchers("/api/v1/auth/**", "/health/**").permitAll()
+            .anyRequest().hasAnyRole("user-role")
             .and()
             .csrf().disable()
     }
