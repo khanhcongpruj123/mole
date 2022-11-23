@@ -31,7 +31,7 @@ class AuthServiceImpl(
     private val keycloakProps: KeycloakSpringBootProperties
 ) : AuthService {
 
-    override fun signUp(username: String, email: String, password: String): User {
+    override fun signUp(username: String, password: String, email: String): User {
         val userResource = moleRealmResource.users()
         // init request create user to keycloak server
         val userRepresentation = UserRepresentation().apply {

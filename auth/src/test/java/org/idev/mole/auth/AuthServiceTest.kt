@@ -13,6 +13,6 @@ class AuthServiceTest {
 
     @Test
     fun `test sign up`() {
-        authService.signUp("test2", "khanhcongpruj_test2@gmail.com", "123qweA!")
+        authService.signUp("test2", "123qweA!", "khanhcongpruj_test2@gmail.com")
     }
 }
