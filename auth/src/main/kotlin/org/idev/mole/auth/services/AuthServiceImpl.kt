@@ -7,6 +7,7 @@ import org.idev.mole.auth.provider.KeycloakProvider
 import org.jboss.resteasy.client.jaxrs.ResteasyClient
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget
 import org.keycloak.OAuth2Constants
+import org.keycloak.adapters.springboot.KeycloakSpringBootProperties
 import org.keycloak.admin.client.CreatedResponseUtil
 import org.keycloak.admin.client.resource.RealmResource
 import org.keycloak.admin.client.token.TokenService
@@ -26,7 +27,8 @@ import javax.ws.rs.core.Form
 class AuthServiceImpl(
     @Qualifier("moleRealmResource")
     private val moleRealmResource: RealmResource,
-    private val keycloakProvider: KeycloakProvider
+    private val keycloakProvider: KeycloakProvider,
+    private val keycloakProps: KeycloakSpringBootProperties
 ) : AuthService {
 
     override fun signUp(username: String, email: String, password: String): User {
@@ -75,14 +77,14 @@ class AuthServiceImpl(
 
     override fun refreshToken(refreshToken: String): Token {
         val client = ClientBuilder.newClient() as ResteasyClient
-        val target: ResteasyWebTarget = client.target("http://localhost:8080")
+        val target: ResteasyWebTarget = client.target(keycloakProps.authServerUrl)
         val tokenService = target.proxy(TokenService::class.java)
         // init refresh form
         val form = Form().apply {
             param(OAuth2Constants.GRANT_TYPE, OAuth2Constants.REFRESH_TOKEN)
             param(OAuth2Constants.REFRESH_TOKEN, refreshToken)
-            param(OAuth2Constants.CLIENT_SECRET, "wRlc9SedbKfDr9xwWqnbzVOLJI7STYl1")
-            param(OAuth2Constants.CLIENT_ID, "mole")
+            param(OAuth2Constants.CLIENT_SECRET, keycloakProps.credentials["secret"].toString())
+            param(OAuth2Constants.CLIENT_ID, keycloakProps.resource)
         }
         // send request to keycloak server to get token
         return tokenService.refreshToken("mole", form.asMap()).let {
