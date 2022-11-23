@@ -87,7 +87,7 @@ class AuthServiceImpl(
             param(OAuth2Constants.CLIENT_ID, keycloakProps.resource)
         }
         // send request to keycloak server to get token
-        return tokenService.refreshToken("mole", form.asMap()).let {
+        return tokenService.refreshToken(keycloakProps.realm, form.asMap()).let {
             Token(it.token, it.refreshToken)
         }
     }
