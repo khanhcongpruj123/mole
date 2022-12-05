@@ -1,4 +1,4 @@
-package org.idev.mole.auth.dtos
+package org.idev.mole.auth.configs
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration

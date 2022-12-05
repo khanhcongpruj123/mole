@@ -1,6 +1,5 @@
 package org.idev.mole.auth.configs
 
-import org.idev.mole.auth.dtos.KeycloakAdminProperties
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
 import org.keycloak.adapters.KeycloakConfigResolver
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver
