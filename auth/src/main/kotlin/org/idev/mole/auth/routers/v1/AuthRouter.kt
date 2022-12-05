@@ -1,8 +1,8 @@
 package org.idev.mole.auth.routers.v1
 
-import org.idev.mole.auth.dto.RefreshTokenRequest
-import org.idev.mole.auth.dto.SignInRequest
-import org.idev.mole.auth.dto.SignUpRequest
+import org.idev.mole.auth.dtos.RefreshTokenRequest
+import org.idev.mole.auth.dtos.SignInRequest
+import org.idev.mole.auth.dtos.SignUpRequest
 import org.idev.mole.auth.services.AuthServiceImpl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
