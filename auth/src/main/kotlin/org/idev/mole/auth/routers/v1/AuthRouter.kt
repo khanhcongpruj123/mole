@@ -2,6 +2,7 @@ package org.idev.mole.auth.routers.v1
 
 import org.idev.mole.auth.dtos.RefreshTokenRequest
 import org.idev.mole.auth.dtos.SignInRequest
+import org.idev.mole.auth.dtos.SignInResponse
 import org.idev.mole.auth.dtos.SignUpRequest
 import org.idev.mole.auth.services.AuthServiceImpl
 import org.springframework.http.HttpStatus
@@ -22,8 +23,9 @@ class AuthRouter(private val authService: AuthServiceImpl) {
     }
 
     @PostMapping("/sign-in")
-    fun signIn(@RequestBody request: SignInRequest) : ResponseEntity<*> {
-        return ResponseEntity.ok(authService.signIn(username = request.username, password = request.password))
+    fun signIn(@RequestBody request: SignInRequest): ResponseEntity<SignInResponse> {
+        val token = authService.signIn(username = request.username, password = request.password)
+        return ResponseEntity.ok(SignInResponse(accessToken = token.accessToken, refreshToken = token.refreshToken))
     }
 
     @PostMapping("/token/refresh")
