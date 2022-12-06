@@ -68,11 +68,21 @@ class AuthServiceImpl(
     }
 
     override fun signIn(username: String, password: String): Token {
-        // send request to keycloak server to receive token
-        return keycloakProvider.keycloakWithUsernameAndPassword(username, password).tokenManager()
-            .accessToken.let {
-                Token(it.token, it.refreshToken)
-            }
+        // check user's email is verified
+        val userResource = moleRealmResource.users()
+        val users = userResource.search(username)
+        if (users.isEmpty()) {
+            throw RuntimeException("User not found")
+        }
+        if (users[0].isEmailVerified) {
+            // send request to keycloak server to receive token
+            return keycloakProvider.keycloakWithUsernameAndPassword(username, password).tokenManager()
+                .accessToken.let {
+                    Token(it.token, it.refreshToken)
+                }
+        } else {
+            throw RuntimeException("User must verify email!")
+        }
     }
 
     override fun refreshToken(refreshToken: String): Token {
