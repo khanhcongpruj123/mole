@@ -1,4 +1,4 @@
-package org.idev.mole.auth.dto
+package org.idev.mole.auth.dtos
 
 data class SignInResponse(
     val accessToken: String,

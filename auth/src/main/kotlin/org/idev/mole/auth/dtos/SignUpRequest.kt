@@ -1,4 +1,4 @@
-package org.idev.mole.auth.dto
+package org.idev.mole.auth.dtos
 
 data class SignUpRequest(
     val username: String,
