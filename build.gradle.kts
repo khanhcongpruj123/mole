@@ -5,7 +5,6 @@ version = "1.0-SNAPSHOT"
 
 plugins {
     kotlin("jvm") version "1.7.20" apply(false)
-    kotlin("kapt") version "1.7.20"
     application
 }
 
@@ -35,9 +34,6 @@ subprojects {
 
         implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
         testImplementation("io.projectreactor:reactor-test")
-
-        implementation("com.github.pozo:mapstruct-kotlin:1.4.0.0")
-        implementation("org.mapstruct:mapstruct:1.5.3.Final")
     }
     tasks.test {
         useJUnitPlatform()
