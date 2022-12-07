@@ -1,5 +1,6 @@
 package org.idev.mole.auth.services
 
+import org.idev.mole.auth.models.Role
 import org.idev.mole.auth.models.Token
 import org.idev.mole.auth.models.User
 import org.idev.mole.auth.models.UserProfile
@@ -35,15 +36,19 @@ class AuthServiceImpl(
         val userResource = moleRealmResource.users()
         // init request create user to keycloak server
         val userRepresentation = UserRepresentation().apply {
+            // set username and email
             this.username = username
             this.email = email
+            this.isEmailVerified = false
 
+            // set password credential
             val passwordCredential = CredentialRepresentation().apply {
                 type = CredentialRepresentation.PASSWORD
                 value = password
             }
             this.credentials = listOf(passwordCredential)
 
+            // default set it is enabled
             this.isEnabled = true
         }
         // send create user request
@@ -55,13 +60,18 @@ class AuthServiceImpl(
         }
 
         val userId: String = CreatedResponseUtil.getCreatedId(response)
+
+        // set role for new user
         userResource.get(userId).run {
             // add user role for created user
             val client = moleRealmResource.clients()
-                .findByClientId("mole")[0]
-            val userRole = moleRealmResource.clients()[client.id].roles()["user-role"].toRepresentation()
+                .findByClientId(keycloakProps.resource)[0]
+            val userRole = moleRealmResource.clients()[client.id].roles()[Role.USER.value].toRepresentation()
             roles().clientLevel(client.id).add(listOf(userRole))
         }
+
+        // TODO send verify email
+
         return userRepresentation.let {
             User(it.username, it.email, UserProfile())
         }
