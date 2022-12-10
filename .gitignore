@@ -94,7 +94,7 @@ terraform.rc
 infrastructure/postgres-kratos
 infrastructure/postgres-post-service
 
-.gradle/**/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/**/buildOutputCleanup
 .gradle/**/checksums/checksums.lock
 .gradle/**/dependencies-accessors/dependencies-accessors.lock
 .gradle/**/executionHistory/executionHistory.bin
