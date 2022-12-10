@@ -94,4 +94,14 @@ terraform.rc
 infrastructure/postgres-kratos
 infrastructure/postgres-post-service
 
+.gradle/**/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/**/checksums/checksums.lock
+.gradle/**/dependencies-accessors/dependencies-accessors.lock
+.gradle/**/executionHistory/executionHistory.bin
+.gradle/**/executionHistory/executionHistory.lock
+.gradle/**/file-system.probe
+.gradle/**/fileHashes.lock
+.gradle/**/fileHashes.bin
+.gradle/**/outputFiles.bin
+
 # End of https://www.toptal.com/developers/gitignore/api/kotlin,gradle
