@@ -1,0 +1,30 @@
+providers:
+  file:
+    filename: /etc/traefik/traefik.yaml
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+api:
+  dashboard: true
+  insecure: true
+log:
+  level: DEBUG
+entryPoints:
+  mole:
+    address: ":9000"
+  web:
+    address: ":80"
+http:
+  routers:
+    mole-post-router:
+      entryPoints:
+        - "mole"
+      middlewares:
+        - "oathkeeper@docker"
+      service: post-service
+      rule: "PathPrefix(`/api/v1/posts`)"
+  services:
+    post-service:
+      loadBalancer:
+        servers:
+          - url: "http://host.docker.internal:2000"
+
