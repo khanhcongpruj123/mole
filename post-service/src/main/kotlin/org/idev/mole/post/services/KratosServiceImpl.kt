@@ -1,6 +1,7 @@
 package org.idev.mole.post.services
 
 import org.idev.mole.post.configs.OryConfigProperties
+import org.json.JSONObject
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 
@@ -12,6 +13,8 @@ class KratosServiceImpl(val oryConfigProperties: OryConfigProperties) : KratosSe
         .uri("/sessions/whoami")
         .header("Authorization", "Bearer ${bearerToken}")
         .retrieve()
-        .toEntity(Map::class.java)
-        .block()?.body
+        .bodyToMono(String::class.java)
+        .block().let {
+            JSONObject(it)
+        }
 }

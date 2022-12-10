@@ -14,6 +14,9 @@ class WebSecurityConfig(val oryBearerTokenFilter: OryBearerTokenFilter) {
     @Bean
     fun securityFilterChain(http: HttpSecurity) = http.httpBasic()
         .and()
+        .csrf().disable()
+        .cors()
+        .and()
         .authorizeRequests()
         .antMatchers("/health/**").permitAll()
         .anyRequest().authenticated()
