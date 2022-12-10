@@ -1,0 +1,17 @@
+server:
+  port: 2000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/post-service?createDatabaseIfNotExist=true
+    username: mole
+    password: mole
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+ory:
+  kratos:
+    useSsl: false
+    host: localhost
+    port: 4433

@@ -1,3 +1,3 @@
 
 rootProject.name = "mole"
-include("auth")
+include("post-service")
