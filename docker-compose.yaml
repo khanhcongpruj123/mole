@@ -90,3 +90,14 @@ services:
     ports:
       - "4455:3000"
     restart: on-failure
+
+  rabbitmq-post-service:
+    image: bitnami/rabbitmq:latest
+    environment:
+      - RABBITMQ_USERNAME=mole
+      - RABBITMQ_PASSWORD=mole
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "./infrastructure/rabbitmq-post-service:/bitnami"

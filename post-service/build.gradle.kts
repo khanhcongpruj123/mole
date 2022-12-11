@@ -24,4 +24,10 @@ dependencies {
 
     kapt("org.mapstruct:mapstruct-processor:1.5.3.Final")
     kapt("com.github.pozo:mapstruct-kotlin-processor:1.4.0.0")
+
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.amqp:spring-rabbit-test")
+
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
 }

@@ -2,7 +2,7 @@ package org.idev.mole.post.routers.v1
 
 import org.idev.mole.post.dtos.PostDTO
 import org.idev.mole.post.mappers.PostMapper
-import org.idev.mole.post.repositories.PostRepository
+import org.idev.mole.post.services.PostService
 import org.json.JSONObject
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -12,7 +12,7 @@ import java.util.*
 @RestController
 @RequestMapping("/api/v1/posts")
 class PostController(
-    val postRepository: PostRepository,
+    val postService: PostService,
     val postMapper: PostMapper
 ) {
 
@@ -20,7 +20,7 @@ class PostController(
     fun posts(@AuthenticationPrincipal session: JSONObject): ResponseEntity<List<PostDTO>> {
         val userId = session.getJSONObject("identity")
             .getString("id")
-        return ResponseEntity.ok(postRepository.findByUserId(UUID.fromString(userId)).map { postMapper.map(it) })
+        return ResponseEntity.ok(postService.postRepository.findByUserId(UUID.fromString(userId)).map { postMapper.map(it) })
     }
 
     @PostMapping
@@ -28,7 +28,7 @@ class PostController(
         val userId = session.getJSONObject("identity")
             .getString("id")
         postDTO.userId = userId
-        postRepository.save(postMapper.map(postDTO))
+        postService.sendCreatePostMessage(postDTO)
         return ResponseEntity.ok().build()
     }
 }
