@@ -4,4 +4,4 @@
 |  __/| \_/|\___ |  | |
 \_/   \____/\____/  \_/
 
-Mole Auth Module v0.1
+Post Module v0.1
