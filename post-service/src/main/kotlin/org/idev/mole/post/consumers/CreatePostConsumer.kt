@@ -66,7 +66,6 @@ class CreatePostConsumer(
     @RabbitListener(queues = ["mole.create-post-queue"])
     fun createPostListener(postDTO: PostDTO) {
         logger.info("Receive create post request {}", postDTO)
-        throw IllegalAccessException("Test dead letter queue")
         postService.createPost(postDTO)
     }
 }
