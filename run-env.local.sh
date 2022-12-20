@@ -1,0 +1,1 @@
+docker-compose up --build kratos postgres-kratos kratos-selfservice-ui-node rabbitmq-post-service postgres-post-service

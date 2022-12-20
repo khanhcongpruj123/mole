@@ -89,4 +89,14 @@ services:
       - KRATOS_BROWSER_URL=http://127.0.0.1:4433/
     ports:
       - "4455:3000"
-    restart: on-failure
+
+  rabbitmq-post-service:
+    image: bitnami/rabbitmq:latest
+    environment:
+      - RABBITMQ_USERNAME=mole
+      - RABBITMQ_PASSWORD=mole
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "./infrastructure/rabbitmq-post-service:/bitnami"

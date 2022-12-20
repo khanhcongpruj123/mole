@@ -93,9 +93,10 @@ terraform.rc
 # database data
 infrastructure/postgres-kratos
 infrastructure/postgres-post-service
+infrastructure/rabbitmq-post-service
 
 .gradle/**/buildOutputCleanup
-.gradle/**/checksums/checksums.lock
+.gradle/**/checksums
 .gradle/**/dependencies-accessors/dependencies-accessors.lock
 .gradle/**/executionHistory/executionHistory.bin
 .gradle/**/executionHistory/executionHistory.lock
