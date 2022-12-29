@@ -42,7 +42,8 @@ services:
       - "5432:5432"
     volumes:
       - "./infrastructure/postgres-kratos:/var/lib/postgresql/data"
-  postgres-post-service:
+
+  db:
     image: postgres:9.6
     environment:
       - POSTGRES_USER=mole
@@ -90,7 +91,7 @@ services:
     ports:
       - "4455:3000"
 
-  rabbitmq-post-service:
+  rabbitmq:
     image: bitnami/rabbitmq:latest
     environment:
       - RABBITMQ_USERNAME=mole
