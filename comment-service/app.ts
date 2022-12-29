@@ -5,7 +5,9 @@ import compression from "compression";
 import helmet from "helmet";
 import multer from "multer";
 import { PrismaClient } from "@prisma/client";
-import logger from "@libs/logger"
+import logger from "@libs/logger";
+import commentRouterV1 from "@comment/comment.router.v1";
+import authMiddleware from "@auth/auth.middleware";
 
 // create express app
 const app = express();
@@ -22,9 +24,9 @@ app.use(compression());
 app.use(helmet());
 app.use(multer().any());
 
-app.get("/", (req: Request, res: Response) => {
-  res.json({message: "This is comment service"})
-})
+app.use(authMiddleware)
+
+app.use("/api/v1", commentRouterV1)
 
 // start server
 export default app;

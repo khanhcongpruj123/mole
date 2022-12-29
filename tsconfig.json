@@ -22,6 +22,8 @@
     "baseUrl": ".",
     "paths": {
       "@libs/*": ["./comment-service/libs/*"],
+      "@comment/*": ["./comment-service/comment/*"],
+      "@auth/*": ["./comment-service/authentication/*"]
     }
   },
   "include": ["comment-service/**/*.ts", "comment-service/**/*.json", ".env"],
