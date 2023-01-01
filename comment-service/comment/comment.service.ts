@@ -9,8 +9,8 @@ export const get = async (
   pageSize?: number | undefined
 ) => {
   return prisma.comment.findMany({
-    skip: page ? page * pageSize : undefined,
-    take: pageSize,
+    skip: page && pageSize ? page * pageSize : undefined,
+    take: pageSize ? Number(pageSize) : undefined,
     where: {
       objectId: objectId,
     },
