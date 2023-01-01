@@ -7,19 +7,25 @@ import * as kratosService from "../kratos/kratos.service";
  * Then, set auth session is kratos auth session
  * User can get user id, session id,... by auth session
  */
-const authMiddleware = async (
+const authMiddleware = (
   req: AuthRequest,
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const authToken = req.headers.authorization?.replace("Bearer ", "");
-    var authSession = await (await kratosService.whoAmI(authToken)).data
-    req.authSession = authSession;
-    next();
-  } catch (error: any) {
-    res.send(error);
-  }
+  const authToken = req.headers.authorization?.replace("Bearer ", "");
+  // get token from kratos
+  // return 401 when request has error
+  kratosService
+    .whoAmI(authToken)
+    .then((v) => {
+      if (v.status == 200) {
+        req.authSession = v.data;
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((e) => res.sendStatus(401));
 };
 
 export default authMiddleware;
