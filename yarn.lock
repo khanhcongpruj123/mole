@@ -905,6 +905,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/kafkajs@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@types/kafkajs/-/kafkajs-1.9.0.tgz#758d82e4a3caad101f7bb5c7be296fd0c9326ee7"
+  integrity sha512-R9VDNbiw+vNfxWjjFHUrLMF/Dfc7asGXzKtYUwI4FaT24Chf5ZNkfvce54p4dkLMxPcsrEsVazAK0Jp2ib4Zxw==
+  dependencies:
+    kafkajs "*"
+
 "@types/lodash@^4.14.182":
   version "4.14.191"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
@@ -3042,6 +3049,11 @@ jws@^3.2.2:
   dependencies:
     jwa "^1.4.1"
     safe-buffer "^5.0.1"
+
+kafkajs@*, kafkajs@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-2.2.3.tgz#a1ab1b7c4a27699871a89b3978b5cfe5b05c6f3e"
+  integrity sha512-JmzIiLHE/TdQ7b4I2B/DNMtfhTh66fmEaEg7gGkyQXBC6f1A7I2jSjeUsVIJfC8d9YcEIURyBjtOEKBO5OHVhg==
 
 kleur@^3.0.3:
   version "3.0.3"

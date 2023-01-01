@@ -23,7 +23,9 @@
     "paths": {
       "@libs/*": ["./comment-service/libs/*"],
       "@comment/*": ["./comment-service/comment/*"],
-      "@auth/*": ["./comment-service/authentication/*"]
+      "@auth/*": ["./comment-service/authentication/*"],
+      "@kafka": ["./comment-service/kafka/"],
+      "@kafka/*": ["./comment-service/kafka/*"]
     }
   },
   "include": ["comment-service/**/*.ts", "comment-service/**/*.json", ".env"],
