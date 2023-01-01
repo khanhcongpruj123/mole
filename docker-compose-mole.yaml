@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  mole: {}
+
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=mole
+      - POSTGRES_PASSWORD=mole
+      - POSTGRES_DB=post-service
+    ports:
+      - "5433:5432"
+    volumes:
+      - "./infrastructure/postgres-post-service:/var/lib/postgresql/data"
+    networks:
+      - mole
+  
+  rabbitmq:
+    image: bitnami/rabbitmq:latest
+    environment:
+      - RABBITMQ_USERNAME=mole
+      - RABBITMQ_PASSWORD=mole
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "./infrastructure/rabbitmq-post-service:/bitnami"
+    networks:
+      - mole

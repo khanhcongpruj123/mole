@@ -1,0 +1,17 @@
+version: '3'
+
+networks:
+  mole: {}
+
+services:
+  traefik:
+    image: "traefik:v3.0"
+    ports:
+      - "8080:80"
+      - "8081:8080"
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./infrastructure/traefik/traefik.yaml:/etc/traefik/traefik.yaml"
+    networks:
+      - mole
