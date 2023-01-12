@@ -1,7 +1,7 @@
 package org.idev.mole.post.utils
 
+import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpHeaders
-import javax.servlet.http.HttpServletRequest
 
 
 fun HttpServletRequest.bearerToken(): String? = this.getHeader(HttpHeaders.AUTHORIZATION).let { authorizationStr ->

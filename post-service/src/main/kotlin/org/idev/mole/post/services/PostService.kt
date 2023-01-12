@@ -6,6 +6,8 @@ import org.idev.mole.post.mappers.PostMapper
 import org.idev.mole.post.repositories.PostRepository
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class PostService(
@@ -29,5 +31,16 @@ class PostService(
     fun createPost(postDTO: PostDTO) {
         logger.info("Create post {}", postDTO)
         postRepository.save(postMapper.map(postDTO))
+    }
+
+    /**
+     * Update content post
+     * */
+    @Transactional
+    fun updatePost(postDTO: PostDTO) {
+        val post = postRepository.findById(UUID.fromString(postDTO.id))
+            .orElseThrow()
+        post.content = postDTO.content
+        // transactional will save your change
     }
 }

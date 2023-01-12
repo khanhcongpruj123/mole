@@ -1,10 +1,8 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 group = "org.idev"
 version = "1.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.7.20" apply(false)
+    kotlin("jvm") version "1.7.22" apply (false)
     application
 }
 
@@ -38,12 +36,5 @@ subprojects {
     }
     tasks.test {
         useJUnitPlatform()
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
-        }
     }
 }

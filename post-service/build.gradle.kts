@@ -1,13 +1,14 @@
 plugins {
-    id("org.springframework.boot") version "2.7.7"
-    id("org.springframework.experimental.aot") version "0.12.2"
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    id("org.springframework.boot") version "3.0.1"
+    id("io.spring.dependency-management") version "1.1.0"
+    id("org.graalvm.buildtools.native") version "0.9.18"
+    kotlin("plugin.spring") version "1.7.22"
+    kotlin("plugin.jpa") version "1.7.22"
 }
 
 group = "org.idev.mole"
 version = "1.0-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -34,5 +35,12 @@ dependencies {
 kapt {
     arguments {
         arg("mapstruct.defaultComponentModel", "spring")
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "17"
     }
 }
