@@ -67,3 +67,26 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
     networks:
       - mole
+  
+  kafka-schema-registry:
+    image: confluentinc/cp-schema-registry
+    volumes:
+      - ./infrastructure/kafka/schema-registry/scripts/security:/etc/kafka/secrets
+      - ./infrastructure/kafka/schema-registry/scripts/security/keypair:/tmp/conf
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:9092
+      SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8085
+    ports:
+      - 8085:8085
+    networks:
+      - mole
+
+  kafka-schema-registry-gui:
+    image: landoop/schema-registry-ui
+    environment:
+      - SCHEMAREGISTRY_URL=http://kafka-schema-registry:8085
+    ports:
+      - "9001:8000"
+    networks:
+      - mole
